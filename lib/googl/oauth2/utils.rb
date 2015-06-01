@@ -27,6 +27,15 @@ module Googl
         end
       end
 
+      def authorize_with_access_token(access_token, refresh_token, expires_in, expires_at)
+        modify_headers("Authorization" => "OAuth #{access_token}")
+        self.access_token  = access_token
+        self.refresh_token = refresh_token
+        self.expires_in    = expires_in
+        self.expires_at    = expires_at
+        self
+      end
+
       private
 
       def request_token(code, request_uri="urn:ietf:wg:oauth:2.0:oob")
@@ -49,7 +58,7 @@ module Googl
       end
 
       def make_authorize_url(redirect_uri)
-        "https://accounts.google.com/o/oauth2/auth?client_id=#{client_id}&redirect_uri=#{redirect_uri}&scope=#{Googl::Utils::SCOPE_URL}&response_type=code&access_type=offline"
+        "https://accounts.google.com/o/oauth2/auth?client_id=#{client_id}&redirect_uri=#{redirect_uri}&scope=#{Googl::Utils::SCOPE_URL}&response_type=code&access_type=offline&approval_prompt=force"
       end
 
     end
