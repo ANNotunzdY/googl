@@ -49,7 +49,7 @@ module Googl
       end
 
       def make_authorize_url(redirect_uri)
-        "https://accounts.google.com/o/oauth2/auth?client_id=#{client_id}&redirect_uri=#{redirect_uri}&scope=#{Googl::Utils::SCOPE_URL}&response_type=code"
+        "https://accounts.google.com/o/oauth2/auth?client_id=#{client_id}&redirect_uri=#{redirect_uri}&scope=#{Googl::Utils::SCOPE_URL}&response_type=code&access_type=offline"
       end
 
     end
