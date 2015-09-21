@@ -33,7 +33,7 @@ url.info
 ### Expand a short URL
 
 ``` ruby
-url = Googl.expand('http://goo.gl/ump4S')
+url = Googl.expand('http://goo.gl/ump4S', 'YOUR_API_KEY')
 
 url.long_url
 #=> "http://www.zigotto.com/"
@@ -143,7 +143,7 @@ For analytics and additional information to return (using the `:projection` para
 ### Get Analytics
 
 ``` ruby
-url = Googl.expand('http://goo.gl/DWDfi', :projection => :full)
+url = Googl.expand('http://goo.gl/DWDfi', 'YOUR_API_KEY', :projection => :full)
 
 url.analytics.all_time.browsers.first.label
 #=> "Chrome"
