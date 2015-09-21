@@ -86,10 +86,13 @@ module Googl
   #
   # For mor details, see http://code.google.com/intl/pt-BR/apis/urlshortener/v1/reference.html#resource_url
   #
-  def expand(url=nil, options={})
+  def expand(url=nil, api_key=nil, user_ip=nil, options={})
     raise ArgumentError.new("URL to expand is required") if url.nil? || url.strip.empty?
     options = {:shortUrl => url, :projection => nil}.merge!(options)
-    Googl::Expand.new(options)
+    if (user_ip != nil && !user_ip.empty?)
+        options["userIp"] = user_ip
+      end
+    Googl::Expand.new(options, api_key)
   end
 
   # The Google URL Shortener API ClientLogin authentication.
